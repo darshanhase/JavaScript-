@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
+
     <title>Event KeyCodes</title>
-    <link rel="stylesheet" type="text/css" href="../styles.css" />
+
     <style>
       table,
       th,
@@ -30,18 +30,33 @@
     </style>
   </head>
   <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a target="_blank" href="https://www.youtube.com/@chaiaurcode"
-        >Youtube channel</a
-      >
-    </nav>
     <div class="project">
       <div id="insert">
         <div class="key">Press the key and watch magic</div>
       </div>
     </div>
 
-    <script src="./chaiaurcode.js"></script>
+    <script>
+
+        const insert = document.getElementById('insert')
+        window.addEventListener("keydown", (e) => {
+            insert.innerHTML = `
+            <div class = 'color'>
+                <table>
+                    <tr>
+                        <th>key</th>
+                        <th>KeyCode</th>
+                        <th>Code</th>
+                    </tr>
+                    <tr>
+                        <td>${e.key === " " ? "space" : e.key}</td>
+                        <td>${e.keyCode}</td>
+                        <td>${e.code}</td>
+                    </tr>                       
+            `
+        })
+
+
+    </script>
   </body>
 </html>
