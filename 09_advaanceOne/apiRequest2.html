@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Example</title>
+</head>
+<style>
+    body {
+    background-color: #a59393;
+    }
+#quote {
+    text-align: center;
+    border: 5px solid black;
+    margin-top: 100px;
+    margin-left: 200px;
+    margin-right: 200px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #000000;
+    color:  rgb(97, 214, 0);
+   
+    
+}
+h1{
+    text-align: center;
+    color: rgb(62, 42, 150);
+}
+
+
+</style>
+<body>
+    <h1>QUOTE OF THE DAY</h1>
+    <div id="quote"></div>
+
+    <script>
+
+      const send =  function(){         const requestUrl = 'https://api.freeapi.app/api/v1/public/quotes/quote/random';
+        const xhr = new XMLHttpRequest();
+
+        xhr.open('GET', requestUrl);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                const data = JSON.parse(xhr.responseText);
+                console.log(data);
+ 
+               
+                if (data.success && data.data && data.data.content) {
+                    document.getElementById('quote').innerText = data.data.content;
+                } else {
+                    document.getElementById('quote').innerText = "Quote not found!";
+                }
+            }
+        };
+        xhr.send();}
+      setInterval(send, 10000)
+    </script>
+</body>
+</html>
